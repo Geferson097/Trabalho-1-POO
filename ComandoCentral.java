@@ -213,10 +213,14 @@ public class ComandoCentral extends Carro{
 
                     for(int i = 0; i<veiculos.length; i++){
                         if(listaCorrida[i]!=null){
-                            System.out.print(getWhiteSpace(listaCorrida[i].getDistanciaPercorrida()) + "    ____\n");
-                            System.out.print(getWhiteSpace(listaCorrida[i].getDistanciaPercorrida()) +" __/  |_ \\_\n");
-                            System.out.print(getWhiteSpace(listaCorrida[i].getDistanciaPercorrida()) +"|  _     _``-. \n");
-                            System.out.print(getWhiteSpace(listaCorrida[i].getDistanciaPercorrida()) +"'-(_)---(_)--'\n\n\n");
+                            if(!listaCorrida[i].getRemovido())
+                            {
+                                System.out.print(getWhiteSpace(listaCorrida[i].getDistanciaPercorrida()) + "    ____\n");
+                                System.out.print(getWhiteSpace(listaCorrida[i].getDistanciaPercorrida()) +" __/  |_ \\_\n");
+                                System.out.print(getWhiteSpace(listaCorrida[i].getDistanciaPercorrida()) +"|  _     _``-. \n");
+                                System.out.print(getWhiteSpace(listaCorrida[i].getDistanciaPercorrida()) +"'-(_)---(_)--'\n\n\n");
+                            }
+
                         }
                     }
                     break;
