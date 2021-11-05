@@ -1,5 +1,6 @@
 import java.util.Random;
 
+
 public class Carro {
     private int identificacao;//um número aleatória de 0 a 19
     private Roda[] rodas;
@@ -7,6 +8,9 @@ public class Carro {
     private double valorVenda;//pode ficar a meu critério
     private boolean ipva;//true para pago e false para não pago
     private int distanciaPercorrida;
+    private  boolean removido = false;
+
+
 
     public Carro(int ident) {
         this.identificacao = ident;
@@ -23,6 +27,8 @@ public class Carro {
         this.adicionarRoda();
     }
 
+    private void setRemovido(boolean b) { this.removido=b;}
+    public boolean getRemovido(){return this.removido;}
     public int getDistanciaPercorrida()
     {
         return distanciaPercorrida;
@@ -76,11 +82,17 @@ public class Carro {
     }
 
     public void removerVeiculo(int id, Carro a) {
-        if (a.identificacao == id) {
-            a = null;
-            System.out.println("O veiculo numero " + id + " foi removido da corrida.");
+        if (a!= null) {
+            if(a.identificacao == id)
+            {
+                a.setRemovido(true);
+                System.out.println("O veiculo numero " + id + " foi removido da corrida.");
+            }
+
         }
     }
+
+
 
     public void abastecerVeiculo(int id, double comb, Carro b) {
         if (b.identificacao == id) {
@@ -178,13 +190,5 @@ public class Carro {
         }
     }
 
-    public void desenhar(){
-        String teste ="    ____\n __/  |_ \\_\n |  _     _``-.       \n '-(_)---(_)--'\n\n\n" ;
-
-//        System.out.print(" __/  |_ \\_\n"); // \_\n");
-//        System.out.print("|  _     _``-.       \n");
-//        System.out.print("'-(_)---(_)--'\n\n\n");
-
-    }
 
 }
