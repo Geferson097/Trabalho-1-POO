@@ -237,7 +237,12 @@ public class ComandoCentral extends Carro{
         } while (opcao != 12);
 
     }
-
-
+    static String getWhiteSpace(int size) {
+        StringBuilder builder = new StringBuilder(size);
+        for(int i = 0; i <size ; i++) {
+            builder.append("  ");
+        }
+        return builder.toString();
+    }
 
 }

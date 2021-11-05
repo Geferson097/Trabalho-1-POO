@@ -4,7 +4,7 @@ import java.util.Random;
 public class Carro {
     private int identificacao;//um número aleatória de 0 a 19
     private Roda[] rodas;
-    private double combustivel;//inicialmente com 3,5 litros
+    private double combustivel = 3.5;//inicialmente com 3,5 litros
     private double valorVenda;//pode ficar a meu critério
     private boolean ipva;//true para pago e false para não pago
     private int distanciaPercorrida;
@@ -95,15 +95,8 @@ public class Carro {
     public void abastecerVeiculo(int id, double comb, Carro b) {
         if (b.identificacao == id) {
             if (b.combustivel < 3.5) {
-                b.combustivel = b.combustivel + 3.5;
-                if (b.combustivel > 3.5) {
-                    double abastecido;
-                    abastecido = b.combustivel - 3.5;
-                    b.combustivel = 3.5;
-                    System.out.println("O carro numero " + id + " foi abastecido com " + abastecido + " litros");
-                } else {
-                    System.out.println("O carro numero " + id + " foi abastecido com " + comb + " litros");
-                }
+                b.combustivel = b.combustivel + comb;
+                System.out.println("O carro numero " + id + " foi abastecido com " + comb + " litros");
             } else {
                 System.out.println("O carro esta com o tanque cheio.");
             }
@@ -187,12 +180,6 @@ public class Carro {
             }
         }
     }
-    static String getWhiteSpace(int size) {
-        StringBuilder builder = new StringBuilder(size);
-        for(int i = 0; i <size ; i++) {
-            builder.append("  ");
-        }
-        return builder.toString();
-    }
+
 
 }
