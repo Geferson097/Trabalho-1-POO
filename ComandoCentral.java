@@ -1,11 +1,20 @@
 import java.util.Scanner;
 import java.util.Random;
 
-public class ComandoCentral {
+
+public class ComandoCentral extends Carro{
+
+    private static final int max = 20;
+    private static Carro[] veiculos = new Carro[max];
+
+    public ComandoCentral(int ident) {
+        super(ident);
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int opcao = 0;
-        Carro[] listaCorrida = new Carro[20];
+        Carro[] listaCorrida = new Carro[max];
         int posicao = 0;
         int id;
         //menu iterativo para acessar as funções
@@ -169,6 +178,12 @@ public class ComandoCentral {
 
                 case 11:
                     System.out.println("Imprimindo pista de corrida...");
+                    for(int i = 0; i<veiculos.length; i++){
+                        if(listaCorrida[i]!=null){
+                            listaCorrida[i].desenhar();
+                        }
+                    }
+
                     break;
 
                 case 12:
@@ -183,4 +198,7 @@ public class ComandoCentral {
         } while (opcao != 12);
 
     }
+
+
+
 }

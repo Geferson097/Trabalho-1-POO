@@ -6,7 +6,7 @@ public class Carro {
     private Roda[] rodas;
     private double combustivel;//inicialmente com 3,5 litros
     private double valorVenda;//pode ficar a meu critério
-    private int ipva;//1 para pago e 0 para não pago
+    private boolean ipva;//1 para pago e 0 para não pago
     private int distanciaPercorrida;
 
     public Carro(int ident) {
@@ -17,9 +17,9 @@ public class Carro {
         Random aleatorio = new Random();
         int sorteio = aleatorio.nextInt(100);
         if (sorteio % 2 == 0) {
-            this.ipva = 1;
+            this.ipva = true;
         } else {
-            this.ipva = 0;
+            this.ipva = false;
         }
         this.adicionarRoda();
     }
@@ -30,9 +30,9 @@ public class Carro {
         for (int i = 0; i < 4; i++) {
             sorteio = aleatorio.nextInt(100);
             if (sorteio % 2 == 0) {
-                this.rodas[i] = new Roda(1);
+                this.rodas[i] = new Roda(true);
             } else {
-                this.rodas[i] = new Roda(0);
+                this.rodas[i] = new Roda(false);
             }
         }
     }
@@ -45,9 +45,9 @@ public class Carro {
 
             System.out.println("Quantidade combustivel: " + this.combustivel);
             System.out.println("Valor de venda: " + this.valorVenda);
-            if (this.ipva == 0)
+            if (this.ipva == false)
                 System.out.println("O IPVA nao foi pago.");
-            else if (this.ipva == 1)
+            else if (this.ipva == true)
                 System.out.println("O IPVA foi pago.");
             else
                 System.out.println("Informacao sobre ipva indisponível.");
@@ -62,9 +62,9 @@ public class Carro {
 
         System.out.println("Quantidade combustivel: " + this.combustivel);
         System.out.println("Valor de venda: " + this.valorVenda);
-        if (this.ipva == 0)
+        if (this.ipva == false)
             System.out.println("O IPVA nao foi pago.");
-        else if (this.ipva == 1)
+        else if (this.ipva == true)
             System.out.println("O IPVA foi pago.");
         else
             System.out.println("Informacao sobre ipva indisponível.");
@@ -103,13 +103,13 @@ public class Carro {
             //cada distancia consome 0.55L de combustivel
             //se move se todos os pneus estiver calibrados
             //e por fim se move se o IPVA esta pago
-            int verificaPneus = 1;
+            boolean verificaPneus = true;
             for (int i = 0; i < 4; i++) {
                 if (c.rodas[i] != null)
                     verificaPneus = c.rodas[i].verificaCalibragem(c.rodas[i]);
             }
-            if (verificaPneus == 1) {
-                if (c.ipva == 1) {
+            if (verificaPneus == true) {
+                if (c.ipva == true) {
                     double combNecessario;
                     combNecessario = distancia * 0.55;
                     if (c.combustivel >= combNecessario) {
@@ -129,13 +129,13 @@ public class Carro {
     }
 
     public void movimentaTodosVeiculos(int distancia) {
-        int verificaPneus = 1;
+        boolean verificaPneus = true;
         for (int i = 0; i < 4; i++) {
             if (this.rodas[i] != null)
                 verificaPneus = this.rodas[i].verificaCalibragem(this.rodas[i]);
         }
-        if (verificaPneus == 1) {
-            if (this.ipva == 1) {
+        if (verificaPneus == true) {
+            if (this.ipva == true) {
                 double combNecessario;
                 combNecessario = distancia * 0.55;
                 if (this.combustivel >= combNecessario) {
@@ -174,4 +174,12 @@ public class Carro {
             }
         }
     }
+
+    public void desenhar(){
+        System.out.print("    ____\n");
+        System.out.print(" __/  |_ \\_\n"); // \_\n");
+        System.out.print("|  _     _``-.       \n");
+        System.out.print("'-(_)---(_)--'\n\n\n");
+    }
+
 }
