@@ -178,11 +178,13 @@ public class ComandoCentral extends Carro{
 
                 case 11:
                     System.out.println("Imprimindo pista de corrida...");
+
                     for(int i = 0; i<veiculos.length; i++){
                         if(listaCorrida[i]!=null){
-                            System.out.println("   ");
-                            listaCorrida[i].desenhar();
-
+                            System.out.print(getWhiteSpace(listaCorrida[i].getDistanciaPercorrida()) + "    ____\n");
+                            System.out.print(getWhiteSpace(listaCorrida[i].getDistanciaPercorrida()) +" __/  |_ \\_\n");
+                            System.out.print(getWhiteSpace(listaCorrida[i].getDistanciaPercorrida()) +"|  _     _``-. \n");
+                            System.out.print(getWhiteSpace(listaCorrida[i].getDistanciaPercorrida()) +"'-(_)---(_)--'\n\n\n");
                         }
                     }
 
@@ -201,6 +203,12 @@ public class ComandoCentral extends Carro{
 
     }
 
-
+    private static String getWhiteSpace(int size) {
+        StringBuilder builder = new StringBuilder(size);
+        for(int i = 0; i <size ; i++) {
+            builder.append("  ");
+        }
+        return builder.toString();
+    }
 
 }

@@ -1,4 +1,3 @@
-import java.util.Scanner;
 import java.util.Random;
 
 public class Carro {
@@ -24,6 +23,10 @@ public class Carro {
         this.adicionarRoda();
     }
 
+    public int getDistanciaPercorrida()
+    {
+        return distanciaPercorrida;
+    }
     public void adicionarRoda() {
         Random aleatorio = new Random();
         int sorteio;
@@ -176,10 +179,12 @@ public class Carro {
     }
 
     public void desenhar(){
-        System.out.print("    ____\n");
-        System.out.print(" __/  |_ \\_\n"); // \_\n");
-        System.out.print("|  _     _``-.       \n");
-        System.out.print("'-(_)---(_)--'\n\n\n");
+        String teste ="    ____\n __/  |_ \\_\n |  _     _``-.       \n '-(_)---(_)--'\n\n\n" ;
+
+//        System.out.print(" __/  |_ \\_\n"); // \_\n");
+//        System.out.print("|  _     _``-.       \n");
+//        System.out.print("'-(_)---(_)--'\n\n\n");
+
     }
 
 }
