@@ -6,7 +6,7 @@ public class Carro {
     private Roda[] rodas;
     private double combustivel;//inicialmente com 3,5 litros
     private double valorVenda;//pode ficar a meu critério
-    private boolean ipva;//1 para pago e 0 para não pago
+    private boolean ipva;//true para pago e false para não pago
     private int distanciaPercorrida;
 
     public Carro(int ident) {

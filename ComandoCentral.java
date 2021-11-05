@@ -87,7 +87,7 @@ public class ComandoCentral extends Carro{
                     System.out.println("Movimentando um veiculo...");
                     System.out.println("Informe o id do veiculo que vai se movimentar: ");
                     id = sc.nextInt();
-                    int distancia;
+                    int distancia = 0;
                     System.out.println("Informe o quanto ira se movimentar: ");
                     distancia = sc.nextInt();
 
@@ -180,7 +180,9 @@ public class ComandoCentral extends Carro{
                     System.out.println("Imprimindo pista de corrida...");
                     for(int i = 0; i<veiculos.length; i++){
                         if(listaCorrida[i]!=null){
+                            System.out.println("   ");
                             listaCorrida[i].desenhar();
+
                         }
                     }
 
