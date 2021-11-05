@@ -203,13 +203,12 @@ public class ComandoCentral extends Carro{
                             {
                                 listaCorrida[i].esvaziarTodasRodas(id, listaCorrida[i]);
                             }
-                            ;
                         }
                     }
                     System.out.print("\n\n");
                     break;
 
-                case 11:
+                case 11: //imprimir a pista de corrida
                     System.out.println("Imprimindo pista de corrida...");
 
                     for(int i = 0; i<veiculos.length; i++){
@@ -235,12 +234,6 @@ public class ComandoCentral extends Carro{
 
     }
 
-    private static String getWhiteSpace(int size) {
-        StringBuilder builder = new StringBuilder(size);
-        for(int i = 0; i <size ; i++) {
-            builder.append("  ");
-        }
-        return builder.toString();
-    }
+
 
 }
