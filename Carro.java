@@ -29,10 +29,8 @@ public class Carro {
 
     private void setRemovido(boolean b) { this.removido=b;}
     public boolean getRemovido(){return this.removido;}
-    public int getDistanciaPercorrida()
-    {
-        return distanciaPercorrida;
-    }
+    public int getDistanciaPercorrida() { return this.distanciaPercorrida; }
+
     public void adicionarRoda() {
         Random aleatorio = new Random();
         int sorteio;
@@ -154,7 +152,7 @@ public class Carro {
                 double combNecessario;
                 combNecessario = distancia * 0.55;
                 if (this.combustivel >= combNecessario) {
-                    System.out.println("O veiculo se movimentou " + distancia * 5 + " blocos de distancia.");
+                    System.out.println("O veiculo " + this.identificacao +" se movimentou " + distancia * 5 + " blocos de distancia.");
                     this.combustivel = this.combustivel - combNecessario;
                     this.distanciaPercorrida = this.distanciaPercorrida + distancia;
                 } else {
