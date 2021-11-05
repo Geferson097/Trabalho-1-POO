@@ -1,5 +1,5 @@
 public class Roda {
-    private boolean calibragem; //1 para calibrado e 0 para não calibrado
+    private boolean calibragem = true; //1 para calibrado e 0 para não calibrado
 
     public Roda(boolean cali) {
         this.calibragem = cali;
