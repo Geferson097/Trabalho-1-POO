@@ -37,25 +37,30 @@ public class ComandoCentral extends Carro{
             System.out.println("Digite sua opçao: ");
             opcao = sc.nextInt();
             System.out.println(" ");
+            int aux=0;
             switch (opcao) {
                 case 1:
-                    System.out.println("Incluindo um veiculo...");
-                    System.out.println("-------------------------------------------------");
-                    Random aleatorio = new Random();
-                    int ident = aleatorio.nextInt(100);
-                    int ipva;
-
-                    int sorteio = aleatorio.nextInt(100);
-
-                    if (listaCorrida[posicao] == null) {
-                        listaCorrida[posicao] = new Carro(ident);
+                    if(posicao ==20){
+                        System.out.println("Numero máximo de veiculos atingido");
+                        break;
                     }
-                    System.out.println("O veiculo de numero " + ident + " foi adicionado na posicao " + posicao);
-                    posicao++;
-                    System.out.print("\n\n");
+                        aux++;
+                        System.out.println("Incluindo um veiculo...");
+                        System.out.println("-------------------------------------------------");
+                        Random aleatorio = new Random();
+                        int ident = aleatorio.nextInt(100);
+                        int ipva;
 
-                    break;
+                        int sorteio = aleatorio.nextInt(100);
 
+                        if (listaCorrida[posicao] == null) {
+                            listaCorrida[posicao] = new Carro(ident);
+                        }
+                        System.out.println("O veiculo de numero " + ident + " foi adicionado na posicao " + posicao);
+                        posicao++;
+                        System.out.print("\n\n");
+
+                        break;
                 case 2:
                     System.out.println("Removendo um veiculo...");
                     System.out.println("-----------------------");
