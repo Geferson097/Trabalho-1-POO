@@ -92,12 +92,8 @@ public class Carro {
 
     public void abastecerVeiculo(int id, double comb, Carro b) {    //metodo para abastecer um veiculo especifico da corrida atraves de seu ID
         if (b.identificacao == id) {
-            if (b.combustivel < 3.5) {
                 b.combustivel = b.combustivel + comb;
                 System.out.println("O carro numero " + id + " foi abastecido com " + comb + " litros");
-            } else {
-                System.out.println("O carro esta com o tanque cheio.");
-            }
         }
     }
 
