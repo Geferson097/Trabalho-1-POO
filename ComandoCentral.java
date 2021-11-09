@@ -37,16 +37,14 @@ public class ComandoCentral extends Carro{
             System.out.println("Digite sua opçao: ");
             opcao = sc.nextInt();
             System.out.println(" ");
-            int aux=0;
             switch (opcao) {
                 case 1:
 
                     System.out.println("Incluindo um veiculo...");
                     System.out.println("-------------------------------------------------");
-                    Random aleatorio = new Random();
+                    Random aleatorio = new Random(System.nanoTime());
+                    int ident = aleatorio.nextInt(100);
 
-                    int ident = gerarIDaleatorioSemRepetir(aux);
-                    aux++;
                     if (posicao<20) {
                         if(listaCorrida[posicao] == null)
                         {
@@ -54,8 +52,6 @@ public class ComandoCentral extends Carro{
                             System.out.println("O veiculo de numero " + ident + " foi adicionado na posicao " + posicao);
                             posicao++;
                         }
-                        else System.out.print("Numero maximo de veiculos atingido, remova um veiculo para adicionar mais");
-
                     }
                     else{
                         for (int i = 0; i < max; i++) {
@@ -250,24 +246,5 @@ public class ComandoCentral extends Carro{
         }
         return builder.toString();
     }
-
-    public static int gerarIDaleatorioSemRepetir(int indice){
-
-        int numero;
-        int[] num = new int[max];
-        Random r = new Random(System.nanoTime());
-        for(int i=0; i<num.length; i++){
-            numero = r.nextInt(99) + 1;
-            for(int j=0; j<num.length; j++){
-                if(numero == num[j] && j != i){
-                    numero = r.nextInt(99) + 1;
-                }else{
-                    num[i] = numero;
-                }
-            }
-        }
-        return num[indice];
-    }
-
 }
 
