@@ -45,9 +45,6 @@ public class ComandoCentral extends Carro{
                     System.out.println("-------------------------------------------------");
                     Random aleatorio = new Random();
                     int ident = aleatorio.nextInt(100);
-                    int ipva;
-
-                    int sorteio = aleatorio.nextInt(100);
                     if (posicao<20) {
                         if(listaCorrida[posicao] == null)
                         {
@@ -55,7 +52,7 @@ public class ComandoCentral extends Carro{
                             System.out.println("O veiculo de numero " + ident + " foi adicionado na posicao " + posicao);
                             posicao++;
                         }
-                        else System.out.print("cheio");
+                        else System.out.print("Numero maximo de veiculos atingido");
 
                     }
                     else{
@@ -65,7 +62,7 @@ public class ComandoCentral extends Carro{
                                 System.out.println("O veiculo de numero " + ident + " foi adicionado na posicao " + i);
                             }
                         }
-                        System.out.print("cheio");
+                        System.out.print("Numero maximo de veiculos atingido!");
                     }
                     System.out.print("\n\n");
                     break;
@@ -176,19 +173,16 @@ public class ComandoCentral extends Carro{
                     int caliEsva;
                     System.out.println("Digite 1 para calibrar e 0 para esvaziar: ");
                     caliEsva = sc.nextInt();
-
                     for (int i = 0; i < 20; i++) {
                         if (listaCorrida[i] != null) {
                             if(!listaCorrida[i].getRemovido())
                             {
                                 listaCorrida[i].calibrarOuEsvaziarEspecifico(id, caliEsva, roda, listaCorrida[i]);
                             }
-
                         }
                     }
                     System.out.print("\n\n");
                     break;
-
                 case 9:
                     System.out.println("Calibrando todos os pneus de um veiculo especifico...");
                     System.out.println("Informe a id do carro: ");
@@ -244,10 +238,8 @@ public class ComandoCentral extends Carro{
                 default:
                     System.out.println("Opçao Invalida");
                     break;
-
             }
         } while (opcao != 12);
-
     }
     static String getWhiteSpace(int size) {
         StringBuilder builder = new StringBuilder(size);
@@ -256,5 +248,4 @@ public class ComandoCentral extends Carro{
         }
         return builder.toString();
     }
-
 }
