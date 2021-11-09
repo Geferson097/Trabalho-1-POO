@@ -44,7 +44,9 @@ public class ComandoCentral extends Carro{
                     System.out.println("Incluindo um veiculo...");
                     System.out.println("-------------------------------------------------");
                     Random aleatorio = new Random();
-                    int ident = aleatorio.nextInt(100);
+
+                    int ident = gerarIDaleatorioSemRepetir(aux);
+                    aux++;
                     if (posicao<20) {
                         if(listaCorrida[posicao] == null)
                         {
@@ -52,7 +54,7 @@ public class ComandoCentral extends Carro{
                             System.out.println("O veiculo de numero " + ident + " foi adicionado na posicao " + posicao);
                             posicao++;
                         }
-                        else System.out.print("Numero maximo de veiculos atingido");
+                        else System.out.print("Numero maximo de veiculos atingido, remova um veiculo para adicionar mais");
 
                     }
                     else{
@@ -60,9 +62,9 @@ public class ComandoCentral extends Carro{
                             if (listaCorrida[i].getRemovido() == true) {
                                 listaCorrida[i] = new Carro(ident);
                                 System.out.println("O veiculo de numero " + ident + " foi adicionado na posicao " + i);
+                                break;
                             }
                         }
-                        System.out.print("Numero maximo de veiculos atingido!");
                     }
                     System.out.print("\n\n");
                     break;
@@ -248,4 +250,24 @@ public class ComandoCentral extends Carro{
         }
         return builder.toString();
     }
+
+    public static int gerarIDaleatorioSemRepetir(int indice){
+
+        int numero;
+        int[] num = new int[max];
+        Random r = new Random(System.nanoTime());
+        for(int i=0; i<num.length; i++){
+            numero = r.nextInt(99) + 1;
+            for(int j=0; j<num.length; j++){
+                if(numero == num[j] && j != i){
+                    numero = r.nextInt(99) + 1;
+                }else{
+                    num[i] = numero;
+                }
+            }
+        }
+        return num[indice];
+    }
+
 }
+
