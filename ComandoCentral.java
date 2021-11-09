@@ -40,27 +40,36 @@ public class ComandoCentral extends Carro{
             int aux=0;
             switch (opcao) {
                 case 1:
-                    if(posicao ==20){
-                        System.out.println("Numero máximo de veiculos atingido");
-                        break;
-                    }
-                        aux++;
-                        System.out.println("Incluindo um veiculo...");
-                        System.out.println("-------------------------------------------------");
-                        Random aleatorio = new Random();
-                        int ident = aleatorio.nextInt(100);
-                        int ipva;
 
-                        int sorteio = aleatorio.nextInt(100);
+                    System.out.println("Incluindo um veiculo...");
+                    System.out.println("-------------------------------------------------");
+                    Random aleatorio = new Random();
+                    int ident = aleatorio.nextInt(100);
+                    int ipva;
 
-                        if (listaCorrida[posicao] == null) {
+                    int sorteio = aleatorio.nextInt(100);
+                    if (posicao<20) {
+                        if(listaCorrida[posicao] == null)
+                        {
                             listaCorrida[posicao] = new Carro(ident);
+                            System.out.println("O veiculo de numero " + ident + " foi adicionado na posicao " + posicao);
+                            posicao++;
                         }
-                        System.out.println("O veiculo de numero " + ident + " foi adicionado na posicao " + posicao);
-                        posicao++;
-                        System.out.print("\n\n");
+                        else System.out.print("cheio");
 
-                        break;
+                    }
+                    else{
+                        for (int i = 0; i < max; i++) {
+                            if (listaCorrida[i].getRemovido() == true) {
+                                listaCorrida[i] = new Carro(ident);
+                                System.out.println("O veiculo de numero " + ident + " foi adicionado na posicao " + i);
+                            }
+                        }
+                        System.out.print("cheio");
+                    }
+                    System.out.print("\n\n");
+                    break;
+
                 case 2:
                     System.out.println("Removendo um veiculo...");
                     System.out.println("-----------------------");
@@ -72,8 +81,6 @@ public class ComandoCentral extends Carro{
                             {
                                 listaCorrida[i].removerVeiculo(id, listaCorrida[i]);
                             }
-
-
                     }
                     System.out.print("\n\n");
                     break;
