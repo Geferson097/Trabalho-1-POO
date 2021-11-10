@@ -12,10 +12,10 @@ public class Carro {
 
 
 
-    public Carro(int ident) {
+    public Carro(int ident,float comb) {
         this.identificacao = ident; //setar a identificação da classe Carro com a variavel que vem de ComandoCentral
         this.rodas = new Roda[4];  //Criar um novo vetor de Rodas com tamanho 4 e atribuir a variavel roda da classe Carro atravez do this
-        this.combustivel = 3.5;    //setar o valor de combustivel da classe Carro
+        this.combustivel = comb;    //setar o valor de combustivel da classe Carro
         this.valorVenda = 40000;   //setar o valor de venda da classe Carro
         Random aleatorio = new Random();  //criar um numero aleatorio
         int sorteio = aleatorio.nextInt(100);  //filtrar para o numero aleatorio ser um inteiro entre 0 e 99
@@ -103,12 +103,19 @@ public class Carro {
             //cada distancia consome 0.55L de combustivel
             //se move se todos os pneus estiver calibrados
             //e por fim se move se o IPVA esta pago
-            boolean verificaPneus = true;
-            for (int i = 0; i < 4; i++) {
-                if (c.rodas[i] != null)
-                    verificaPneus = c.rodas[i].verificaCalibragem(c.rodas[i]);
+            boolean verificaPneus=true;
+            for (int i = 0; i < 4; i++)
+            {
+                if (!c.rodas[i].verificaCalibragem(rodas[i]))
+                {
+                    if(!c.rodas[i].verificaCalibragem(c.rodas[i])) {
+                    }
+                    System.out.println("Pneu descalibrado, não movimenta");
+                    verificaPneus = false;
+                    break;
+                }
             }
-            if (verificaPneus == true) {
+            if (verificaPneus==true) {
                 if (c.ipva == true) {
                     double combNecessario;
                     combNecessario = distancia * 0.55;
@@ -122,34 +129,36 @@ public class Carro {
                 } else {
                     System.out.println("O veiculo nao se movimenta, IPVA nao pago.");
                 }
-            } else {
-                System.out.println("O veiculo nao se movimenta, pneus nao calibrados.");
+
             }
         }
     }
 
-    public void movimentaTodosVeiculos(int distancia) {     //metodo para todos os veiculos presentes na corrida
+    public void movimentaTodosVeiculos(int distancia, Carro c) {     //metodo para todos os veiculos presentes na corrida
         boolean verificaPneus = true;
         for (int i = 0; i < 4; i++) {
-            if (this.rodas[i] != null)
-                verificaPneus = this.rodas[i].verificaCalibragem(this.rodas[i]);
+            if (!c.rodas[i].verificaCalibragem(rodas[i])) {
+                if (!c.rodas[i].verificaCalibragem(c.rodas[i])) {
+                }
+                System.out.println("O veiculo " + c.identificacao + " possui o pneu "+ i + " descalibrado, não movimenta");
+                verificaPneus = false;
+                break;
+            }
         }
         if (verificaPneus == true) {            //verifica que para o veiculo se movimentar os pneus devem estar calibrados
-            if (this.ipva == true) {            // verifica que para um veiculo se movimentar o IPVA deve estar pago
+            if (c.ipva == true) {            // verifica que para um veiculo se movimentar o IPVA deve estar pago
                 double combNecessario;
                 combNecessario = distancia * 0.55;  //faz o calculo do combustivel nescessario para movimentar
-                if (this.combustivel >= combNecessario) {       //verifica se tem combustivel suficiente
-                    System.out.println("O veiculo " + this.identificacao +" se movimentou " + distancia * 5 + " blocos de distancia.");
-                    this.combustivel = this.combustivel - combNecessario;   //define o novo valor do combustivel apartir do que foi gasto
-                    this.distanciaPercorrida = this.distanciaPercorrida + distancia;
+                if (c.combustivel >= combNecessario) {       //verifica se tem combustivel suficiente
+                    System.out.println("O veiculo " + this.identificacao + " se movimentou " + distancia * 5 + " blocos de distancia.");
+                    c.combustivel -= combNecessario;   //define o novo valor do combustivel apartir do que foi gasto
+                    c.distanciaPercorrida += distancia;
                 } else {
-                    System.out.println("O veiculo " + this.identificacao + " nao se movimenta, sem combustivel suficiente.");
+                    System.out.println("O veiculo " + c.identificacao + " nao se movimenta, sem combustivel suficiente.");
                 }
             } else {
-                System.out.println("O veiculo " + this.identificacao + " nao se movimenta, IPVA nao pago.");
+                System.out.println("O veiculo " + c.identificacao + " nao se movimenta, IPVA nao pago.");
             }
-        } else {
-            System.out.println("O veiculo " + this.identificacao + " nao se movimenta, pneus nao calibrados.");
         }
     }
 

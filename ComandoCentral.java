@@ -5,10 +5,12 @@ import java.util.Random;
 public class ComandoCentral extends Carro{
 
     private static final int max = 20;
+    private static final float combIni = 3.5F ;
     public static Carro[] veiculos = new Carro[max];
 
-    public ComandoCentral(int ident) {
-        super(ident);
+
+    public ComandoCentral(int ident , float combini) {
+        super(ident,combIni);
     }
 
     public static void main(String[] args) {
@@ -37,6 +39,7 @@ public class ComandoCentral extends Carro{
             System.out.println("Digite sua opçao: ");
             opcao = sc.nextInt();
             System.out.println(" ");
+            int aux=0;
             switch (opcao) {
                 case 1:
 
@@ -48,18 +51,23 @@ public class ComandoCentral extends Carro{
                     if (posicao<20) {
                         if(listaCorrida[posicao] == null)
                         {
-                            listaCorrida[posicao] = new Carro(ident);
+                            listaCorrida[posicao] = new Carro(ident, combIni);
                             System.out.println("O veiculo de numero " + ident + " foi adicionado na posicao " + posicao);
                             posicao++;
+
                         }
+                        aux++;
+                        if(aux == 19) System.out.print("Cheio, remova um veiculo caso queira adicionar mais");
                     }
                     else{
                         for (int i = 0; i < max; i++) {
                             if (listaCorrida[i].getRemovido() == true) {
-                                listaCorrida[i] = new Carro(ident);
+                                listaCorrida[i] = new Carro(ident, combIni);
                                 System.out.println("O veiculo de numero " + ident + " foi adicionado na posicao " + i);
                                 break;
                             }
+                            aux++;
+                            if(aux == 19) System.out.print("Cheio, remova um veiculo caso queira adicionar mais");
                         }
                     }
                     System.out.print("\n\n");
@@ -75,6 +83,7 @@ public class ComandoCentral extends Carro{
                             if(!listaCorrida[i].getRemovido())
                             {
                                 listaCorrida[i].removerVeiculo(id, listaCorrida[i]);
+                                aux--;
                             }
                     }
                     System.out.print("\n\n");
@@ -88,7 +97,7 @@ public class ComandoCentral extends Carro{
                     System.out.println("Informe a quantidade de combustivel que sera abastecido: ");
                     comb = sc.nextDouble();
 
-                    for (int i = 0; i < 20; i++) {
+                    for (int i = 0; i < listaCorrida.length; i++) {
                         if (listaCorrida[i] != null)
                             if(!listaCorrida[i].getRemovido())
                             {
@@ -107,7 +116,7 @@ public class ComandoCentral extends Carro{
                     System.out.println("Informe o quanto ira se movimentar: ");
                     distancia = sc.nextInt();
 
-                    for (int i = 0; i < 20; i++) {
+                    for (int i = 0; i < listaCorrida.length; i++) {
                         if (listaCorrida[i] != null) {
                             if(!listaCorrida[i].getRemovido())
                             {
@@ -122,11 +131,11 @@ public class ComandoCentral extends Carro{
                     System.out.println("Movimentando todos os veiculos...");
                     System.out.println("Informe o quanto todos os carros se movimentarao: ");
                     distancia = sc.nextInt();
-                    for (int i = 0; i < 20; i++) {
+                    for (int i = 0; i < listaCorrida.length; i++) {
                         if (listaCorrida[i] != null) {
                             if(!listaCorrida[i].getRemovido())
                             {
-                                listaCorrida[i].movimentaTodosVeiculos(distancia);
+                                listaCorrida[i].movimentaTodosVeiculos(distancia,listaCorrida[i]);
                             }
                         }
                     }
@@ -137,7 +146,7 @@ public class ComandoCentral extends Carro{
                     System.out.println("Imprimindo todos os dados de um veiculo...");
                     System.out.println("Informe o numero do veiculo que se quer os dados: ");
                     id = sc.nextInt();
-                    for (int i = 0; i < 20; i++) {
+                    for (int i = 0; i < listaCorrida.length; i++) {
                         if (listaCorrida[i] != null ) {
                             if(!listaCorrida[i].getRemovido())
                             {
@@ -151,7 +160,7 @@ public class ComandoCentral extends Carro{
 
                 case 7:
                     System.out.println("Imprimindo todos os dados de todos os veiculos...");
-                    for (int i = 0; i < 20; i++) {
+                    for (int i = 0; i < listaCorrida.length; i++) {
                         if (listaCorrida[i] != null ) {
                             if(!listaCorrida[i].getRemovido()){
                                 listaCorrida[i].imprimirTodosCarros();
@@ -179,6 +188,8 @@ public class ComandoCentral extends Carro{
                             }
                         }
                     }
+                    if(caliEsva ==1) System.out.println("A roda " +roda + " do carro " + id + " foi calibrado");
+                    else System.out.println("A roda " +roda + " do carro " + id + " foi descalibrado");
                     System.out.print("\n\n");
                     break;
                 case 9:
@@ -190,10 +201,12 @@ public class ComandoCentral extends Carro{
                             if(!listaCorrida[i].getRemovido())
                             {
                                 listaCorrida[i].calibrarTodasRodas(id, listaCorrida[i]);
+
                             }
 
                         }
                     }
+                    System.out.println("Todos os pneus do veiculo " + id + " foram calibrados");
                     System.out.print("\n\n");
                     break;
 
@@ -208,7 +221,9 @@ public class ComandoCentral extends Carro{
                                 listaCorrida[i].esvaziarTodasRodas(id, listaCorrida[i]);
                             }
                         }
+
                     }
+                    System.out.println("Todos os pneus do veiculo " + id + " foram esvaziados");
                     System.out.print("\n\n");
                     break;
 
