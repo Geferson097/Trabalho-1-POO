@@ -3,7 +3,7 @@
 * Simulador Corrida em Java
 
 * Profesora Luciene Marin.
-* Aluno: Geferson Artuzo.
-* Aluno: Arthur Afonso
+* Aluno: Geferson Artuzo  RA: 1756834
+* Aluno: Arthur Afonso Rodrigues da Silva
 
 
