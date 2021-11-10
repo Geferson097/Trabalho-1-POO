@@ -54,10 +54,7 @@ public class ComandoCentral extends Carro{
                             listaCorrida[posicao] = new Carro(ident, combIni);
                             System.out.println("O veiculo de numero " + ident + " foi adicionado na posicao " + posicao);
                             posicao++;
-
                         }
-                        aux++;
-                        if(aux == 19) System.out.print("Cheio, remova um veiculo caso queira adicionar mais");
                     }
                     else{
                         for (int i = 0; i < max; i++) {
@@ -67,7 +64,7 @@ public class ComandoCentral extends Carro{
                                 break;
                             }
                             aux++;
-                            if(aux == 19) System.out.print("Cheio, remova um veiculo caso queira adicionar mais");
+                            if(aux == 20) System.out.print("Cheio, remova um veiculo caso queira adicionar mais");
                         }
                     }
                     System.out.print("\n\n");

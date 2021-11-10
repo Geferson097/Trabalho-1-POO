@@ -86,7 +86,6 @@ public class Carro {
                 a.setRemovido(true);
                 System.out.println("O veiculo numero " + id + " foi removido da corrida.");
             }
-
         }
     }
 
