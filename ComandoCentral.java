@@ -98,7 +98,7 @@ public class ComandoCentral {
                         if (listaCorrida[i] != null) {
                             if(listaCorrida[i].getIdentificacao()==id)
                             {
-                                listaCorrida[i].movimentaVeiculos();
+                                listaCorrida[i].movimentarVeiculos();
                             }
                         }
                     }
@@ -110,7 +110,7 @@ public class ComandoCentral {
                     for (int i = 0; i < listaCorrida.length; i++) {
                         if (listaCorrida[i] != null) {
 
-                                listaCorrida[i].movimentaVeiculos();
+                                listaCorrida[i].movimentarVeiculos();
                         }
                     }
                     System.out.print("\n\n");
@@ -232,6 +232,8 @@ public class ComandoCentral {
         }
         return builder.toString();
     }
+
+
 
 }
 

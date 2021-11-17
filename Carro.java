@@ -32,8 +32,6 @@ public class Carro {
     public int getIdentificacao() { return identificacao; }
     public int getDistanciaPercorrida() { return this.distanciaPercorrida; }    //retorna o valor da variavel distanciaPercorrida
     public double getCombustivel() { return this.combustivel; }
-
-
     public void SetCombustivel(double comb) { this.combustivel+=comb; }
 
     public void adicionarRoda() {               //metodo para definir os atributos da roda
@@ -103,7 +101,7 @@ public class Carro {
         }
     }
 
-    public void movimentaVeiculos() {     //metodo para movimentar os veiculos presentes na corrida
+    public void movimentarVeiculos() {     //metodo para movimentar os veiculos presentes na corrida
         boolean verificaPneus = true;
         int distancia=5;
         for (int i = 0; i < 4; i++) {
