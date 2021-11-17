@@ -49,8 +49,9 @@ public class ComandoCentral {
                             aux++;
                             break;
                         }
+                        if(aux==19 ) System.out.print("Cheio, remova um veiculo caso queira adicionar mais");
                     }
-                    if(aux == 20) System.out.print("Cheio, remova um veiculo caso queira adicionar mais");
+
                     System.out.print("\n\n");
                     break;
 

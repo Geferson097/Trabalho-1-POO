@@ -61,7 +61,7 @@ public class Carro {
         }
         else
         {
-            rodas[roda].esvaCaliEspe(true);
+            rodas[roda].esvaCaliEspe(false);
         }
     }
 
