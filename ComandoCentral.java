@@ -10,6 +10,7 @@ public class ComandoCentral {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int opcao = 0;
+        int aux=0;
         Carro[] listaCorrida = new Carro[max];
         int id;
         //menu iterativo para acessar as funções
@@ -32,7 +33,6 @@ public class ComandoCentral {
             System.out.println("Digite sua opçao: ");
             opcao = sc.nextInt();
             System.out.println(" ");
-            int aux=0;
             switch (opcao) {
                 case 1:
 
@@ -55,9 +55,8 @@ public class ComandoCentral {
                             aux++;
                             break;
                         }
-                        if(aux==19 ) System.out.print("Cheio, remova um veiculo caso queira adicionar mais");
                     }
-
+                    if(aux>=20 ) System.out.print("Cheio, remova um veiculo caso queira adicionar mais");
                     System.out.print("\n\n");
                     break;
 

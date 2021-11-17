@@ -56,7 +56,7 @@ public class Carro {
         }
     }
 
-    public void calibrarOuEsvaziarRodas(boolean caliEsva, int roda)  //metodo para settar o valor da variavel calibragem como true (calibrado) ou false (descalibrad)
+    public void calibrarOuEsvaziarRodas(boolean caliEsva, int roda)  //metodo para settar o valor da variavel calibragem como true (calibrado) ou false (descalibrado)
     {
         if (caliEsva) {
             rodas[roda].setCalibragem(caliEsva);
