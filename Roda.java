@@ -5,6 +5,10 @@ public class Roda {
         this.calibragem = cali;
     }
 
+    public boolean getCalibragem(){ return calibragem; }
+
+    public void setCalibragem(boolean calibragem) { this.calibragem = calibragem; }
+
     public void imprimirRoda() {
         if ((calibragem == false) || (calibragem == true)) {
             if (calibragem == false)
@@ -15,19 +19,5 @@ public class Roda {
             System.out.println("A informacao sobre a roda nao existe");
     }
 
-    public boolean verificaCalibragem() {
-        if (calibragem) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
-    public void esvaCaliEspe(boolean caliEsva) {
-        if (caliEsva) {
-            this.calibragem = caliEsva;
-        } else {
-            this.calibragem = caliEsva;
-        }
-    }
 }

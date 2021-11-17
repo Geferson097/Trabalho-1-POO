@@ -40,6 +40,12 @@ public class ComandoCentral {
                     System.out.println("-------------------------------------------------");
                     Random aleatorio = new Random(System.nanoTime());
                     int ident = aleatorio.nextInt(100);
+                    for (int i = 0; i < listaCorrida.length; i++) {
+                        if (listaCorrida[i] != null && listaCorrida[i].getIdentificacao() == ident)
+                        {
+                            ident = aleatorio.nextInt(100);
+                        }
+                    }
                     for (int i = 0; i < listaCorrida.length; i++)
                     {
                         if (listaCorrida[i]==null)
@@ -65,6 +71,7 @@ public class ComandoCentral {
                             if(listaCorrida[i].getIdentificacao()==id)
                             {
                                 listaCorrida[i]=null;
+                                System.out.print("O veiculo "+ id + " foi removido");
                                 aux--;
                             }
                     }
@@ -75,15 +82,16 @@ public class ComandoCentral {
                     System.out.println("Abastecendo um veiculo...");
                     System.out.println("Informe o id do veiculo que sera abastecido: ");
                     id = sc.nextInt();
-                    double comb;
+                    float comb;
                     System.out.println("Informe a quantidade de combustivel que sera abastecido: ");
-                    comb = sc.nextDouble();
+                    comb = sc.nextFloat();
 
                     for (int i = 0; i < listaCorrida.length; i++) {
                         if (listaCorrida[i] != null)
                             if(listaCorrida[i].getIdentificacao()==id)
                             {
-                                listaCorrida[i].SetCombustivel(comb);
+                                listaCorrida[i].setCombustivel(comb);
+                                System.out.print("O veiculo "+ id + " foi abastecido e agora possui "+listaCorrida[i].getCombustivel() + " litros");
                             }
 
                     }
@@ -98,7 +106,7 @@ public class ComandoCentral {
                         if (listaCorrida[i] != null) {
                             if(listaCorrida[i].getIdentificacao()==id)
                             {
-                                listaCorrida[i].movimentarVeiculos();
+                                movimentarVeiculos(listaCorrida[i]);
                             }
                         }
                     }
@@ -108,9 +116,9 @@ public class ComandoCentral {
                 case 5:
                     System.out.println("Movimentando todos os veiculos...");
                     for (int i = 0; i < listaCorrida.length; i++) {
-                        if (listaCorrida[i] != null) {
-
-                                listaCorrida[i].movimentarVeiculos();
+                        if (listaCorrida[i] != null)
+                        {
+                            movimentarVeiculos(listaCorrida[i]);
                         }
                     }
                     System.out.print("\n\n");
@@ -160,7 +168,7 @@ public class ComandoCentral {
                         if (listaCorrida[i] != null) {
                             if(listaCorrida[i].getIdentificacao()==id)
                             {
-                                listaCorrida[i].calibrarOuEsvaziarPneuEspecifico(caliEsva, roda);
+                                listaCorrida[i].calibrarOuEsvaziarRodas(caliEsva, roda);
                             }
                         }
                     }
@@ -176,7 +184,7 @@ public class ComandoCentral {
                         if (listaCorrida[i] != null) {
                             if(listaCorrida[i].getIdentificacao()==id)
                             {
-                                listaCorrida[i].calibrarOuEsvaziarTodasAsRodas(true);
+                                listaCorrida[i].calibrarOuEsvaziarRodas(true);
                             }
                         }
                     }
@@ -192,7 +200,7 @@ public class ComandoCentral {
                         if (listaCorrida[i] != null) {
                             if(listaCorrida[i].getIdentificacao()==id)
                             {
-                                listaCorrida[i].calibrarOuEsvaziarTodasAsRodas(false);
+                                listaCorrida[i].calibrarOuEsvaziarRodas(false);
                             }
                         }
 
@@ -218,13 +226,42 @@ public class ComandoCentral {
                 case 12:
                     System.out.println("Saindo da operacao...");
                     break;
-
                 default:
                     System.out.println("Opçao Invalida");
                     break;
             }
         } while (opcao != 12);
     }
+
+    static void movimentarVeiculos(Carro c) {     //metodo para movimentar os veiculos presentes na corrida
+        boolean verificaPneus = true;
+        int distancia=5;
+        for (int i = 0; i < 4; i++) {
+            if (!c.getRodas(i).getCalibragem())
+            {
+                System.out.println("O veiculo " +c.getIdentificacao()+ " possui o pneu "+ i + " descalibrado, não movimenta");
+                verificaPneus = false;
+                break;
+            }
+        }
+        if (verificaPneus == true) {            //verifica que para o veiculo se movimentar os pneus devem estar calibrados
+            if (c.getIpva()) {            // verifica que para um veiculo se movimentar o IPVA deve estar pago
+                double combNecessario;
+                combNecessario = distancia * 0.55;  //faz o calculo do combustivel nescessario para movimentar
+                if (c.getCombustivel()>= combNecessario) {       //verifica se tem combustivel suficiente
+                    System.out.println("O veiculo " + c.getIdentificacao() + " se movimentou " + distancia * 5 + " blocos de distancia.");
+                    c.setCombustivel(combNecessario);  //define o novo valor do combustivel apartir do que foi gasto
+                    c.setdistanciaPercorrida(distancia);
+                } else {
+                    System.out.println("O veiculo " + c.getIdentificacao() + " nao se movimenta, sem combustivel suficiente.");
+                }
+            } else {
+                System.out.println("O veiculo " + c.getIdentificacao() + " nao se movimenta, IPVA nao pago.");
+            }
+        }
+    }
+
+
     static String getWhiteSpace(int size) {
         StringBuilder builder = new StringBuilder(size);
         for(int i = 0; i <size ; i++) {
@@ -232,8 +269,6 @@ public class ComandoCentral {
         }
         return builder.toString();
     }
-
-
 
 }
 

@@ -29,10 +29,15 @@ public class Carro {
 
 
     
-    public int getIdentificacao() { return identificacao; }
+    public int getIdentificacao() { return identificacao; }            //retorna o valor da variavel identificacao
     public int getDistanciaPercorrida() { return this.distanciaPercorrida; }    //retorna o valor da variavel distanciaPercorrida
-    public double getCombustivel() { return this.combustivel; }
-    public void SetCombustivel(double comb) { this.combustivel+=comb; }
+    public double getCombustivel() { return this.combustivel; }     //retorna o valor da variavel combustive
+    public boolean getIpva() { return ipva;}                //retorna o valor da variavel IPVA
+    public Roda getRodas(int i) { return rodas[i]; }        //retorna o valor da i-ésima roda passada como parametro
+
+    public void setCombustivel(double comb) { this.combustivel-=comb; }  //Seta o valor do combustivel após um quantia ser gasta para o carro se movimentar
+    public void setCombustivel(float comb) { this.combustivel+=comb; }   //Seta o valor do combustivel após abastecer um carro
+    public void setdistanciaPercorrida(int dist) {this.distanciaPercorrida +=dist; }   //Seta o atributo distancia percorrida de um carro
 
     public void adicionarRoda() {               //metodo para definir os atributos da roda
         Random aleatorio = new Random();
@@ -51,37 +56,45 @@ public class Carro {
         }
     }
 
-    public void calibrarOuEsvaziarPneuEspecifico(int caliEsva, int roda)   //metodo para calibrar um pneu de um veiculo especifico da corrida atraves de seu ID
+    public void calibrarOuEsvaziarRodas(boolean caliEsva, int roda)  //metodo para settar o valor da variavel calibragem como true (calibrado) ou false (descalibrad)
+    {
+        if (caliEsva) {
+            rodas[roda].setCalibragem(caliEsva);
+        } else {
+            rodas[roda].setCalibragem(caliEsva);
+        }
+    }
+    public void calibrarOuEsvaziarRodas(int caliEsva, int roda)   //metodo para calibrar um pneu de um veiculo especifico da corrida atraves de seu ID
     {
         if(caliEsva==1)
         {
-            rodas[roda].esvaCaliEspe(true);
+            calibrarOuEsvaziarRodas(true,roda);
         }
         else
         {
-            rodas[roda].esvaCaliEspe(false);
+            calibrarOuEsvaziarRodas(false,roda);
         }
     }
 
-    public void calibrarOuEsvaziarTodasAsRodas(boolean flag) //metodo para calibrar ou esvaziar todos os pneus (se flag for true calibra, se for false descalibra)
+    public void calibrarOuEsvaziarRodas(boolean flag) //metodo para calibrar ou esvaziar todos os pneus (se flag for true calibra, se for false descalibra)
     {
         if(flag)  //se o parametro for true ele calibra todas as rodas
         {
             for (int i = 0; i < 4; i++)
             {
-                rodas[i].esvaCaliEspe(flag);    //true calibra a roda
+                calibrarOuEsvaziarRodas(flag,i);    //true calibra a roda
             }
         }
         else
         {
             for (int i = 0; i < 4; i++)
             {
-                rodas[i].esvaCaliEspe(flag);    //false descalibra a roda
+                calibrarOuEsvaziarRodas(flag,i);    //false descalibra a roda
             }
         }
     }
 
-    public void imprimirDadosCarro()    //metodo para imprimir um carro especifico
+    public void imprimirDadosCarro()    //metodo para imprimir os dados de um carro
     {
         for (int i = 0; i < 4; i++)
         {
@@ -100,35 +113,4 @@ public class Carro {
             System.out.println("Informacao sobre ipva indisponível.");
         }
     }
-
-    public void movimentarVeiculos() {     //metodo para movimentar os veiculos presentes na corrida
-        boolean verificaPneus = true;
-        int distancia=5;
-        for (int i = 0; i < 4; i++) {
-            if (!rodas[i].verificaCalibragem())
-            {
-                System.out.println("O veiculo " + identificacao + " possui o pneu "+ i + " descalibrado, não movimenta");
-                verificaPneus = false;
-                break;
-            }
-        }
-        if (verificaPneus == true) {            //verifica que para o veiculo se movimentar os pneus devem estar calibrados
-            if (ipva == true) {            // verifica que para um veiculo se movimentar o IPVA deve estar pago
-                double combNecessario;
-                combNecessario = distancia * 0.55;  //faz o calculo do combustivel nescessario para movimentar
-                if (combustivel >= combNecessario) {       //verifica se tem combustivel suficiente
-                    System.out.println("O veiculo " + this.identificacao + " se movimentou " + distancia * 5 + " blocos de distancia.");
-                    combustivel -= combNecessario;   //define o novo valor do combustivel apartir do que foi gasto
-                    distanciaPercorrida += distancia;
-                } else {
-                    System.out.println("O veiculo " + identificacao + " nao se movimenta, sem combustivel suficiente.");
-                }
-            } else {
-                System.out.println("O veiculo " + identificacao + " nao se movimenta, IPVA nao pago.");
-            }
-        }
-    }
-
-
-
 }

@@ -45,12 +45,12 @@ public class desenhaCarro {
         System.out.print(bike[2]);
 
 
-    
+
 /*
   ______
  /|_||_\`.__
 (   _    _ _\
-=`-(_)--(_)-' 
+=`-(_)--(_)-'
 */
 
         System.out.print("   __o\n");
@@ -65,7 +65,7 @@ public class desenhaCarro {
 
 /*
    ,_oo
-.-/c-//::  
+.-/c-//::
 (_)'==(_)
 
 */
@@ -78,7 +78,7 @@ public class desenhaCarro {
 */
 
 /*
-   __o    
+   __o
  _`\<,_
 (*)/ (*)
 
@@ -90,7 +90,7 @@ public class desenhaCarro {
   _____]_[_/_>____
  /  __ \<>  |  __ \
 =\_/__\_\___|_/__\_D
-   (__)       (__)    
+   (__)       (__)
 
 
             _______
