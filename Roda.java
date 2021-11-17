@@ -15,19 +15,19 @@ public class Roda {
             System.out.println("A informacao sobre a roda nao existe");
     }
 
-    public boolean verificaCalibragem(Roda a) {
-        if (a.calibragem == true) {
+    public boolean verificaCalibragem() {
+        if (calibragem) {
             return true;
         } else {
             return false;
         }
     }
 
-    public void esvaCaliEspe(int caliEsva) {
-        if (caliEsva == 1) {
-            this.calibragem = true;
+    public void esvaCaliEspe(boolean caliEsva) {
+        if (caliEsva) {
+            this.calibragem = caliEsva;
         } else {
-            this.calibragem = false;
+            this.calibragem = caliEsva;
         }
     }
 }
